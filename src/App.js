@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import UserComponent from './UserComponent';
+import UserFormComponent from './UserFormComponent';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor() {
+    super()
+    this.state = { name: 'Juan', age: 12 };
+  }
+
+  render() {
+    const onChangeNameUser = (e) => {
+      this.setState({ name: e.target.value });
+    };
+    const onChangeAgeUser = (e) => {
+      this.setState({ age: e.target.value });
+    };
+    return (
+      <div>
+        <UserComponent nameUser={this.state.name} ageUser={this.state.age} />
+        <UserFormComponent nameUser={this.state.name} ageUser={this.state.age} onChangeNameUser={onChangeNameUser} onChangeAgeUser={onChangeAgeUser} />
+      </div>
+    )
+  }
 }
-
-export default App;
